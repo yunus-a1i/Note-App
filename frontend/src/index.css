@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import "tailwindcss";
+
+body {
+  @apply bg-black text-2xl font-medium text-white;
+  
+}
+
+body{
+  font-family: 'Manrope';
+}
+
+.message {
+  @apply text-left w-full p-4 text-sm text-white bg-[#f74850]
+}
+
+.successMsg {
+  @apply bg-[#5cb85c]
+}
+
+.iconHover {
+  @apply fill-slate-300 transition ease-in-out hover:cursor-pointer hover:fill-purple-300
+}
