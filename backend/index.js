@@ -12,7 +12,7 @@ const PORT = 3000;
 dotenv.config();
 
 const corsOptions = {
-    origin: 'http://localhost:5175',
+    origin: 'http://localhost:5173',
     credentials: true,
 }
 

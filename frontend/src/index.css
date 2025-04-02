@@ -1,10 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import "tailwindcss";
 
-body {
-  @apply bg-black text-2xl font-medium text-white;
-  
-}
+
 
 body{
   font-family: 'Manrope';
@@ -19,5 +16,65 @@ body{
 }
 
 .iconHover {
-  @apply fill-slate-300 transition ease-in-out hover:cursor-pointer hover:fill-purple-300
+  @apply text-slate-300 transition ease-in-out hover:cursor-pointer hover:text-purple-500
+}
+
+.heading {
+  position: relative;
+}
+
+.heading::after {
+  content: '';
+  background-color: red;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+}
+
+.heading::before {
+  content: '';
+  background-color: black;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  right: 142px;
+  top: -10px;
+}
+
+.animation {
+  position: relative;
+}
+
+.animation::before {
+  content: '';
+  background-color: red;
+  height: 760px;
+  width: 2px;
+  position: absolute;
+  top: 20px;
+  left: -15px;
+}
+
+.animation::after {
+  content: '';
+  background-color: black;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 20px;
+  left: -24px;
+  border-radius: 50%;
+  animation: moveBall 3s linear infinite;
+}
+
+@keyframes moveBall {
+  0% {
+    top: 20px;
+  }
+  50% {
+    top: 760px;
+  }
+  100% {
+    top: 20px;
+  }
 }
