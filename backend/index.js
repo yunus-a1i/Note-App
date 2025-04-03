@@ -11,13 +11,10 @@ const PORT = 3000;
 
 dotenv.config();
 
-const corsOptions = {
-    origin: ["http://localhost:5173", "https://note-app-eight-plum.vercel.app"], // ✅ Multiple allowed origins
-    credentials: true, 
-  };
+
   
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use('/api/user', AuthRoute)
