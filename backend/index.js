@@ -11,12 +11,17 @@ const PORT = 3000;
 
 dotenv.config();
 
-app.use(cors({
-    origin: 'http://localhost:5173', // Allow only your frontend origin
-    credentials: true, // Allow cookies/auth headers
-    methods: 'GET,POST,PUT,DELETE', // Allowed HTTP methods
-    allowedHeaders: 'Content-Type,Authorization' // Allowed headers
-}));
+app.use(
+    cors({
+      origin: [
+        "http://localhost:5173", // Local development
+        "https://note-app-eight-plum.vercel.app", // Vercel deployed frontend
+      ],
+      credentials: true, // Allow cookies/auth headers
+      methods: "GET,POST,PUT,DELETE", // Allowed HTTP methods
+      allowedHeaders: "Content-Type,Authorization", // Allowed headers
+    })
+  );
 
 // Handle preflight requests
 app.options('*', cors());

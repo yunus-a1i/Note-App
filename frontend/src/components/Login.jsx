@@ -35,7 +35,7 @@ const Login = () => {
         setSuccess(response.success);
       }
     } catch (err) {
-      setError("Something went wrong!");
+      setError("Something went wrong!",err);
     }
     setIsPending(false);
   };
