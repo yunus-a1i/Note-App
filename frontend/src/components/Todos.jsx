@@ -20,7 +20,7 @@ const fetcher = (url, options = {}) => {
 
 const Todos = () => {
   const { data, error, mutate, isLoading } = useSWR(
-    "https://note-app-wd85.onrender.com/api/todos",
+    "http://localhost:3000/api/todos",
     fetcher
   );
 
@@ -53,9 +53,10 @@ const Todos = () => {
     };
 
     async function addTodo() {
-      const response = await fetcher("https://note-app-wd85.onrender.com/api/todos", {
+      const response = await fetcher("http://localhost:3000/api/todos", {
         method: "POST",
         body: { title },
+        credentials: "include",
       });
       if (response.error) {
         handleError(response.error);
@@ -78,9 +79,10 @@ const Todos = () => {
     await mutate(
       async () => {
         const response = await fetcher(
-          `https://note-app-wd85.onrender.com/api/todos/${id}`,
+          `http://localhost:3000/api/todos/${id}`,
           {
             method: "DELETE",
+            credentials: "include",
           }
         );
         if (response.error) {
@@ -100,10 +102,11 @@ const Todos = () => {
     await mutate(
       async () => {
         const response = await fetcher(
-          `https://note-app-wd85.onrender.com/api/todos/${id}`,
+          `http://localhost:3000/api/todos/${id}`,
           {
             method: "PUT",
             body: { isCompleted: !isCompleted },
+            credentials: "include",
           }
         );
         if (response.error) {
@@ -136,10 +139,11 @@ const Todos = () => {
     await mutate(
       async () => {
         const response = await fetcher(
-          `https://note-app-wd85.onrender.com/api/todos/${id}`,
+          `http://localhost:3000/api/todos/${id}`,
           {
             method: "PUT",
             body: { title },
+            credentials: "include",
           }
         );
         if (response.error) {
