@@ -7,9 +7,11 @@ import cookieParser from "cookie-parser";
 import cors from 'cors';
 
 const app = express();
-const PORT = 3000;
+
+
 
 dotenv.config();
+const PORT = process.env.PORT;
 
 app.use(
     cors({
