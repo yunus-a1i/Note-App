@@ -80,7 +80,7 @@ const Login = () => {
         <span className="text-[#63657b] text-center text-lg">
           Don't have an account?&ensp;
           <Link
-            to="/register"
+            to="/"
             className="transition ease-in-out hover:cursor-pointer hover:text-blue-500 hover:underline"
           >
             Register
