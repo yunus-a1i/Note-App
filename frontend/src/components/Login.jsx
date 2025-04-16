@@ -14,7 +14,7 @@ const Login = () => {
 
   useEffect(() => {
     if (success) {
-      setTimeout(() => navigate("/"), 2000);
+      setTimeout(() => navigate("/todos"), 2000);
     }
   }, [success, navigate]);
 

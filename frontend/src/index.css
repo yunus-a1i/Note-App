@@ -29,6 +29,7 @@ body{
   height: 10px;
   width: 10px;
   position: absolute;
+  animation: rapidColorChange .5s infinite alternate;
 }
 
 .heading::before {
@@ -39,6 +40,7 @@ body{
   position: absolute;
   right: 142px;
   top: -10px;
+  animation: rapidColorChange2 .5s infinite alternate;
 }
 
 .animation {
@@ -53,6 +55,7 @@ body{
   position: absolute;
   top: 20px;
   left: -15px;
+  
 }
 
 .animation::after {
@@ -70,11 +73,26 @@ body{
 @keyframes moveBall {
   0% {
     top: 20px;
+    opacity: .2;
   }
   50% {
     top: 760px;
+    opacity: 1;
   }
   100% {
     top: 20px;
+    opacity: .2;
   }
+}
+
+@keyframes rapidColorChange {
+  0% { background-color: red; }
+  50% { background-color: black; }
+  100% { background-color: red; }
+}
+
+@keyframes rapidColorChange2 {
+  0% { background-color: black; }
+  50% { background-color: red; }
+  100% { background-color: black; }
 }
