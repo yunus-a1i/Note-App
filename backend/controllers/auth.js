@@ -40,7 +40,7 @@ export async function login(req, res, next) {
     res.cookie('access_token', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production'
-    }).status(200).json('User Logged in')
+    }).status(200).json({token: token, message: 'User Login Successfully'})
 }
 
 export async function logout(req, res, next) {

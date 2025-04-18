@@ -8,15 +8,20 @@ import { motion, AnimatePresence } from "framer-motion";
 
 
 const fetcher = (url, options = {}) => {
-  // Return the fetch promise so that we can work with its resolved value.
+  const token = localStorage.getItem("access_token"); // Get token from localStorage
+
   return fetch(url, {
     method: options.method || "GET",
-    headers: { "Content-Type": "application/JSON" },
-    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}` // Add Authorization header if token exists
+    },
+    credentials: "include", // Include cookies if any
     mode: "cors",
     body: options.body ? JSON.stringify(options.body) : undefined,
   }).then((res) => res.json());
 };
+
 
 const Todos = () => {
   const { data, error, mutate, isLoading } = useSWR(

@@ -32,6 +32,9 @@ const Login = () => {
       if (response.error) {
         setError(response.error);
       } else {
+        if (response.token) {
+          localStorage.setItem("access_token", response.token);
+        }
         setSuccess(response.success);
       }
     } catch (err) {
