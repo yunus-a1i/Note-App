@@ -35,6 +35,8 @@ export async function login(previousState, formData) {
     if (data?.error) {
       return { ...previousState, error: data.error };
     }
+    localStorage.setItem("access_token", data?.token);
+      console.log(data?.token);
     return { error: null, success: data };
   } catch (error) {
     console.log(error);

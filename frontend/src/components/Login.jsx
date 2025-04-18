@@ -30,11 +30,8 @@ const Login = () => {
       // Here register expects formData to be a plain object
       const response = await login(null, formData);
       if (response.error) {
-        setError(response.error);
+        setError(response.error);``
       } else {
-        if (response.token) {
-          localStorage.setItem("access_token", response.token);
-        }
         setSuccess(response.success);
       }
     } catch (err) {
