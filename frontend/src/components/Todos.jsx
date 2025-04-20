@@ -171,7 +171,7 @@ const Todos = () => {
   
 
   return (
-    <div className="animation mx-auto mt-20 max-w-lg px-4 w-full min-h-[800px] p-4 rounded-md flex flex-col gap-6 bg-gray-100">
+    <div className="animation mx-auto mt-20 max-w-lg px-4 w-full min-h-[800px] outline-4 p-4 rounded-md flex flex-col gap-6 bg-teal-100">
       <div className='flex justify-end'>
         <Profile />
       </div>
@@ -185,9 +185,9 @@ const Todos = () => {
           name="title"
           id="title"
           required
-          className="w-full h-9 p-4 rounded-md outline-1 outline-gray-200"
+          className="w-full h-9 p-4 rounded-md outline-4 outline-black-200 text-black bg-amber-50"
         />
-        <button className="cursor-pointer h-9 rounded-md border bg-transparent px-4 text-base flex items-center hover:bg-violet-500 transition ease-linear group border-violet-200">
+        <button className="cursor-pointer h-9 outline-4 rounded-md bg-transparent px-4 text-base flex items-center bg-violet-300 hover:bg-violet-500 transition ease-linear group border-violet-200">
           <Plus
             size={20}
             className="transition ease-linear group-hover:stroke-white"
@@ -195,7 +195,7 @@ const Todos = () => {
         </button>
       </form>
       {data?.length ? (
-        <div className=" border-1 border-gray-200 flex flex-col rounded text-violet-700" >
+        <div className=" flex flex-col rounded text-xl font-medium text-violet-700" >
           <AnimatePresence>
   {data.map((todo, index) => (
     <motion.div
@@ -206,7 +206,7 @@ const Todos = () => {
       exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
       transition={{ type: "spring", stiffness: 200, damping: 15 }}
       className={`flex h-10 items-center w-full ${
-        index === data.length - 1 ? "border-b-0" : "border-b-1 border-gray-100 mt-1"
+        index === data.length - 1 ? "border-b-0" : "border-b-4 border-black my-2"
       }`}
     >
       <span

@@ -23,7 +23,7 @@ import {
         }
   
         toast.success("Logged out successfully");
-        navigate("/login", { replace: true }); // Ensures proper redirection
+        navigate("/", { replace: true }); // Ensures proper redirection
       } catch (error) {
         toast.error(error.message);
       }

@@ -15,9 +15,9 @@ createRoot(document.getElementById('root')).render(
     <Toaster position='top-center'/>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Register />} />
+        <Route path='/' element={<Login />} />
         <Route path='/todos' element={<Todos />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/Register' element={<Register />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

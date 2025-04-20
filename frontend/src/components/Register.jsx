@@ -14,7 +14,7 @@ const Register = () => {
 
   useEffect(() => {
     if (success) {
-      setTimeout(() => navigate("/login"), 2000);
+      setTimeout(() => navigate("/"), 2000);
     }
   }, [success, navigate]);
 
@@ -81,7 +81,7 @@ const Register = () => {
         <span className="text-[#63657b] text-center text-lg">
           Already have an account?&ensp;
           <Link
-            to="/login"
+            to="/"
             className="transition ease-in-out hover:cursor-pointer hover:text-blue-500 hover:underline"
           >
             Login
