@@ -1,10 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
 @import "tailwindcss";
 
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
 
+.scrollbar-hidden {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
 
 body{
   font-family: 'Manrope';
+  background-color: #abd1c6;
 }
 
 .message {
@@ -17,82 +26,4 @@ body{
 
 .iconHover {
   @apply text-slate-300 transition ease-in-out hover:cursor-pointer hover:text-purple-500
-}
-
-.heading {
-  position: relative;
-}
-
-.heading::after {
-  content: '';
-  background-color: red;
-  height: 10px;
-  width: 10px;
-  position: fixed;
-  animation: rapidColorChange .5s infinite alternate;
-}
-
-.heading::before {
-  content: '';
-  background-color: black;
-  height: 10px;
-  width: 10px;
-  position: fixed;
-  right: 142px;
-  top: -10px;
-  animation: rapidColorChange2 .5s infinite alternate;
-}
-
-.animation {
-  position: relative;
-}
-
-.animation::before {
-  content: '';
-  background-color: red;
-  height: 760px;
-  width: 4px;
-  position: absolute;
-  top: 20px;
-  left: -15px;
-  
-}
-
-.animation::after {
-  content: '';
-  background-color: black;
-  height: 20px;
-  width: 20px;
-  position: absolute;
-  top: 20px;
-  left: -24px;
-  border-radius: 50%;
-  animation: moveBall 3s linear infinite;
-}
-
-@keyframes moveBall {
-  0% {
-    top: 20px;
-    opacity: .2;
-  }
-  50% {
-    top: 760px;
-    opacity: 1;
-  }
-  100% {
-    top: 20px;
-    opacity: .2;
-  }
-}
-
-@keyframes rapidColorChange {
-  0% { background-color: red; }
-  50% { background-color: black; }
-  100% { background-color: red; }
-}
-
-@keyframes rapidColorChange2 {
-  0% { background-color: black; }
-  50% { background-color: red; }
-  100% { background-color: black; }
 }

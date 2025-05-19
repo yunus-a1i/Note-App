@@ -1,5 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { EditIcon } from "lucide-react";
+import { Pencil } from "lucide-react";
 import { useState } from "react";
 
 const EditTodo = ({ title, id, handleUpdate }) => {
@@ -15,7 +15,7 @@ const EditTodo = ({ title, id, handleUpdate }) => {
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
         <button className="iconHover">
-          <EditIcon className="text-green-500" />
+          <Pencil className="text-[#fffffe] h-5" />
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>

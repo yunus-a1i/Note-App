@@ -4,7 +4,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"; // Correct import for ShadCN
-  import { CircleUserRound } from "lucide-react";
+  import { User } from "lucide-react";
   import toast from "react-hot-toast";
   import { useNavigate } from "react-router-dom";
   
@@ -31,16 +31,16 @@ import {
   
     return (
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <CircleUserRound className="transition ease-in cursor-pointer hover:stroke-blue-500" />
+        <DropdownMenuTrigger asChild className='bg-[#abd1c6] p-1 rounded-b-full'>
+          <User className="text-[#0f3433] cursor-pointer" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="cursor-pointer mr-2">
-          <DropdownMenuItem className="hover:bg-gray-100 px-4 py-2 rounded-md">
+        <DropdownMenuContent align="end" className=" border-none mr-2 bg-[#abd1c6] text-[#0f3433] font-bold">
+          <DropdownMenuItem className="hover:text-[#0f3433dd] px-4 py-2 cursor-pointer">
             Profile
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={handleLogout}
-            className="hover:bg-gray-100 px-4 py-2 rounded-md"
+            className="hover:text-[#0f3433dd] px-4 py-2 cursor-pointer"
           >
             Logout
           </DropdownMenuItem>
