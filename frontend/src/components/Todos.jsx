@@ -46,24 +46,36 @@ const TodoDetail = ({ todo, onClose }) => {
             ✕
           </button>
         </div>
-        
+
         <div className="space-y-4">
           <div>
             <label className="text-white/70 text-sm font-medium">Title</label>
             <p className="text-white text-lg mt-1">{todo.title}</p>
           </div>
-          
+
           <div>
             <label className="text-white/70 text-sm font-medium">Status</label>
-            <p className={`text-lg mt-1 ${todo.isCompleted ? 'text-green-400' : 'text-yellow-400'}`}>
-              {todo.isCompleted ? 'Completed' : 'Pending'}
+            <p
+              className={`text-lg mt-1 ${
+                todo.isCompleted ? "text-green-400" : "text-yellow-400"
+              }`}
+            >
+              {todo.isCompleted ? "Completed" : "Pending"}
             </p>
           </div>
-          
+
           <div>
             <label className="text-white/70 text-sm font-medium">Created</label>
             <p className="text-white/80 text-lg mt-1">
-              {new Date(todo.createdAt || Date.now()).toLocaleDateString()}
+              {(() => {
+                const date = new Date(todo.createdAt || Date.now());
+                const weekday = date.toLocaleString("en-US", {
+                  weekday: "short",
+                });
+                const day = date.getDate();
+                const year = date.getFullYear();
+                return `${weekday} ${day} ${year}`;
+              })()}
             </p>
           </div>
         </div>
@@ -309,7 +321,9 @@ const Todos = () => {
                       <motion.div
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        onClick={() => handleComplete(todo._id, todo.isCompleted)}
+                        onClick={() =>
+                          handleComplete(todo._id, todo.isCompleted)
+                        }
                         className={`flex-shrink-0 w-8 h-8 rounded-full border-2 flex items-center justify-center cursor-pointer transition-all duration-200 ${
                           todo.isCompleted
                             ? "bg-green-500 border-green-500"
@@ -373,7 +387,9 @@ const Todos = () => {
                     animate={{ opacity: 1 }}
                     className="text-center py-12"
                   >
-                    <div className="text-white/50 text-lg mb-2">No notes yet</div>
+                    <div className="text-white/50 text-lg mb-2">
+                      No notes yet
+                    </div>
                     <div className="text-white/30 text-sm">
                       Add your first note above!
                     </div>
