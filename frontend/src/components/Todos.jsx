@@ -7,15 +7,15 @@ import Profile from "./Profile";
 import { motion, AnimatePresence } from "framer-motion";
 
 const fetcher = (url, options = {}) => {
-  const token = localStorage.getItem("access_token"); // Get token from localStorage
+  const token = localStorage.getItem("access_token");
 
   return fetch(url, {
     method: options.method || "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // Add Authorization header if token exists
+      Authorization: `Bearer ${token}`,
     },
-    credentials: "include", // Include cookies if any
+    credentials: "include",
     mode: "cors",
     body: options.body ? JSON.stringify(options.body) : undefined,
   }).then((res) => res.json());
@@ -28,10 +28,31 @@ const Todos = () => {
   );
 
   if (error) {
-    return <h1 className="text-2xl py-2 text-center">Something went wrong!</h1>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#004643] to-[#0c7b6e]">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 text-center border border-white/20"
+        >
+          <h1 className="text-2xl font-bold text-white">
+            Something went wrong!
+          </h1>
+          <p className="text-white/70 mt-2">Please try again later</p>
+        </motion.div>
+      </div>
+    );
   }
+
   if (isLoading) {
-    return <h1 className="text-2xl py-2 text-center">Loading....</h1>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#004643] to-[#0c7b6e]">
+        <motion.div
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          className="w-12 h-12 border-4 border-[#f9bc60] border-t-transparent rounded-full"
+        />
+      </div>
+    );
   }
 
   function handleError(error) {
@@ -42,7 +63,7 @@ const Todos = () => {
   async function handleAddTodo(e) {
     e.preventDefault();
 
-    const formData = new FormData(e.target); // Declare formData here
+    const formData = new FormData(e.target);
     const title = formData.get("title");
 
     if (!title.trim().length) {
@@ -67,7 +88,6 @@ const Todos = () => {
       if (response.error) {
         handleError(response.error);
       }
-      // Ensure data is iterable by defaulting to an empty array if data is undefined.
       return [...(data || []), response];
     }
 
@@ -170,78 +190,136 @@ const Todos = () => {
   }
 
   return (
-    <div className="sm:mx-auto mt-20 sm:max-w-lg sm:px-4 w-full sm:h-[800px] h-[700px] m-auto overflow-y-scroll scrollbar-hidden max-w-sm px-4 border-1 sm:p-4 border-t-0 rounded-md flex flex-col sm:gap-6 gap-2 bg-[#004643]">
-      <div className="flex justify-end">
-        <Profile />
-      </div>
-      <h1 className="bg-gradient-to-r font-bold text-4xl text-center mb-4 text-[#fffffe]">
-        MyNotes
-      </h1>
-      <form onSubmit={handleAddTodo} className="flex gap-4 items-center ">
-        <input
-          type="text"
-          placeholder="Enter your note..."
-          name="title"
-          id="title"
-          required
-          className="w-full h-9 p-4 rounded-md bg-[#e8e4e6] text-[#0f3433] outline-none"
-        />
-        <button className="cursor-pointer h-9 rounded-md px-4 text-base flex items-center bg-[#f9bc60] text-[#001e1d]">
-          <Plus
-            size={20}
-            className="transition ease-linear group-hover:stroke-white"
-          />
-        </button>
-      </form>
-      {data?.length ? (
-        <div className=" flex flex-col rounded gap-.5 justify-start items-start text-xl font-medium text-violet-700">
-            {data.map((todo, index) => (
-              <div
-                key={todo._id}
-                id={`todo-${todo._id}`}
-                className={`flex w-full justify-start items-start py-2 ${
-                  index === data.length - 1 ? "border-b-0" : "my-1"
-                }`}
-              >
-                <span
-                  className={`font-['Patrick Hand', sans] font-bold flex-1 px-3 py-1 text-sm sm:min-h-auto min-h-[90px] bg-[#abd1c6] text-[#0f3433] rounded-sm ${
-                    todo.isCompleted ? "line-through text-[#63657b]" : ""
-                  }`}
-                >
-                  {todo.title}
-                </span>
-                <div className="px-3 flex gap-2 ml-1 sm:flex-row flex-col">
-                  <div
-                    className="cursor-pointer "
-                    onClick={() => handleComplete(todo._id, todo.isCompleted)}
+    <div className="min-h-screen bg-gradient-to-br from-[#004643] to-[#0c7b6e] py-8 px-4">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-lg mx-auto bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 shadow-2xl overflow-hidden"
+      >
+        <div className="p-6 sm:p-8">
+          {/* Header */}
+          <div className="flex justify-between items-center mb-8">
+            <motion.h1
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-4xl font-bold bg-gradient-to-r from-white to-[#f9bc60] bg-clip-text text-transparent"
+            >
+              MyNotes
+            </motion.h1>
+            <Profile />
+          </div>
+
+          {/* Add Todo Form */}
+          <motion.form
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            onSubmit={handleAddTodo}
+            className="flex gap-3 mb-8"
+          >
+            <input
+              type="text"
+              placeholder="Enter your note..."
+              name="title"
+              id="title"
+              required
+              className="flex-1 h-12 px-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 outline-none focus:ring-2 focus:ring-[#f9bc60] focus:border-transparent transition-all duration-200"
+            />
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="h-12 w-12 rounded-xl bg-[#f9bc60] text-[#001e1d] flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200"
+            >
+              <Plus size={20} />
+            </motion.button>
+          </motion.form>
+
+          {/* Todos List */}
+          <div className="space-y-3 max-h-[500px] overflow-y-auto scrollbar-hidden scrollbar-thumb-white/20 scrollbar-track-transparent">
+            <AnimatePresence mode="popLayout">
+              {data?.length ? (
+                data.map((todo, index) => (
+                  <motion.div
+                    key={todo._id}
+                    id={`todo-${todo._id}`}
+                    layout
+                    initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: -100, scale: 0.9 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className={`group flex items-center gap-3 p-4 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-white/15 transition-all duration-200 ${
+                      todo.isCompleted ? "opacity-75" : ""
+                    }`}
                   >
-                    <Check
-                      className={`transition ease-in-out ${
-                        todo.isCompleted ? "text-[#fffffe]" : "text-[#fffffe]"
+                    {/* Check Button */}
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={() => handleComplete(todo._id, todo.isCompleted)}
+                      className={`flex-shrink-0 w-8 h-8 rounded-full border-2 flex items-center justify-center cursor-pointer transition-all duration-200 ${
+                        todo.isCompleted
+                          ? "bg-green-500 border-green-500"
+                          : "border-white/40 hover:border-white"
                       }`}
-                    />
-                  </div>
+                    >
+                      {todo.isCompleted && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Check size={16} className="text-white" />
+                        </motion.div>
+                      )}
+                    </motion.div>
 
-                  {/* ✅ Delete Button with hover + click animation */}
-                  <div
-                    className="cursor-pointer "
-                    onClick={() => deleteTodo(todo._id)}
-                  >
-                    <Delete className="text-[#fffffe]  transition ease-in-out" />
-                  </div>
+                    {/* Todo Text */}
+                    <div className="flex-1 min-w-0">
+                      <span
+                        className={`font-medium text-white break-words ${
+                          todo.isCompleted ? "line-through text-white/60" : ""
+                        }`}
+                      >
+                        {todo.title}
+                      </span>
+                    </div>
 
-                  <EditTodo
-                    handleUpdate={handleUpdate}
-                    id={todo._id}
-                    title={todo.title}
-                  />
-                </div>
-              </div>
-            ))}
+                    {/* Action Buttons */}
+                    <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      <EditTodo
+                        handleUpdate={handleUpdate}
+                        id={todo._id}
+                        title={todo.title}
+                      />
+
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => deleteTodo(todo._id)}
+                        className="w-8 h-8 rounded-lg bg-red-500/20 border border-red-500/30 flex items-center justify-center hover:bg-red-500/30 transition-all duration-200"
+                      >
+                        <Delete size={16} className="text-red-300" />
+                      </motion.button>
+                    </div>
+                  </motion.div>
+                ))
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center py-12"
+                >
+                  <div className="text-white/50 text-lg mb-2">No notes yet</div>
+                  <div className="text-white/30 text-sm">
+                    Add your first note above!
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
-      ) : (
-        <span>"You don't have any todo"</span>
-      )}
+      </motion.div>
     </div>
   );
 };
