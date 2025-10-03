@@ -22,7 +22,6 @@ const fetcher = (url, options = {}) => {
 };
 
 const TodoDetail = ({ todo, onClose }) => {
-
   console.log(todo);
   return (
     <motion.div
@@ -75,8 +74,9 @@ const TodoDetail = ({ todo, onClose }) => {
                   weekday: "short",
                 });
                 const day = date.getDate();
+                const month = date.toLocaleString("en-US", { month: "short" });
                 const year = date.getFullYear();
-                return `${weekday} ${day} ${year}`;
+                return `${weekday} ${day} ${month} ${year}`;
               })()}
             </p>
           </div>
