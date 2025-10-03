@@ -22,6 +22,8 @@ const fetcher = (url, options = {}) => {
 };
 
 const TodoDetail = ({ todo, onClose }) => {
+
+  console.log(todo);
   return (
     <motion.div
       initial={{ opacity: 0 }}
